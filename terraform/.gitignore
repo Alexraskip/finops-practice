@@ -1,6 +1,18 @@
 # Ignore Terraform state & cache
-*.tfstate
-*.tfstate.backup
+# Ignore Terraform local directories
 .terraform/
-# Ignore credentials and local scripts
-scripts/credentials.txt
+
+# Ignore Terraform state files (can contain secrets)
+*.tfstate
+*.tfstate.*
+
+# Ignore crash logs
+crash.log
+
+# Ignore Terraform variable override files (often contain secrets)
+*.tfvars
+*.tfvars.json
+
+# Ignore plan output
+*.tfplan
+
