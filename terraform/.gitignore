@@ -1,0 +1,6 @@
+# Ignore Terraform state & cache
+*.tfstate
+*.tfstate.backup
+.terraform/
+# Ignore credentials and local scripts
+scripts/credentials.txt
