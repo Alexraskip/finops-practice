@@ -15,4 +15,4 @@ crash.log
 
 # Ignore plan output
 *.tfplan
-
+scripts/credentials.txt
