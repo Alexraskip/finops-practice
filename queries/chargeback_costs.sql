@@ -1,3 +1,5 @@
+
+CREATE OR REPLACE TABLE `finops-practice.billing_data.chargeback_costs` AS
 SELECT
   r.billing_account_id,
   b.labels_department,
