@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.oversized_resources` AS
 WITH prepared AS (
   SELECT
     billing_account_id,
@@ -40,4 +39,4 @@ GROUP BY
   p.resource_size_num
 ORDER BY
   total_cost DESC
-LIMIT 50;
+LIMIT 50

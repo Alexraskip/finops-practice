@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.tagging_completeness_by_department` AS
 SELECT
   eb.labels_department,
   COUNTIF(eb.labels_cost_center IS NULL) AS missing,

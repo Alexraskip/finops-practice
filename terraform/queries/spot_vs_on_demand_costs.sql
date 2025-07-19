@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.spot_vs_on_demand_costs` AS
 SELECT
   eb.pricing_model,
   ROUND(SUM(eb.cost), 2) AS total_cost

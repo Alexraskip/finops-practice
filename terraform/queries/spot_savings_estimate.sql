@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.spot_savings_estimate` AS
 SELECT
   ROUND(SUM(eb.cost), 2) AS on_demand_cost,
   ROUND(SUM(eb.cost) * 0.3, 2) AS estimated_spot_cost,  -- assuming 70% cheaper
@@ -11,4 +10,4 @@ ON
   eb.billing_account_id = r.billing_account_id
 WHERE
   eb.utilization < 20
-  AND eb.pricing_model = 'on-demand';
+  AND eb.pricing_model = 'on-demand'

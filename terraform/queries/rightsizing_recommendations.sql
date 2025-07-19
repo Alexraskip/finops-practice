@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.rightsizing_recommendations` AS
 WITH usage_summary AS (
   SELECT
     billing_account_id,
@@ -24,6 +23,6 @@ SELECT
   ROUND(u.total_cost, 2) AS total_cost
 FROM usage_summary u
 LEFT JOIN `finops-practice.billing_data.billing_account_reference` r
-ON u.billing_account_id = r.billing_account_id
+  ON u.billing_account_id = r.billing_account_id
 ORDER BY total_cost DESC
-LIMIT 50;
+LIMIT 50
