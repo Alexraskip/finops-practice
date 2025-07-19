@@ -79,6 +79,7 @@ powershell
 Copy
 Edit
 cd terraform
+& "D:\CCC 2025 DATA\Important Files\Jose\tools\terraform\terraform.exe" validate
 & "D:\CCC 2025 DATA\Important Files\Jose\tools\terraform\terraform.exe" init
 & "D:\CCC 2025 DATA\Important Files\Jose\tools\terraform\terraform.exe" apply
 📥 Step 4: Upload CSV to BigQuery
