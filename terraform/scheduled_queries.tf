@@ -1,4 +1,4 @@
-resource "google_bigquery_data_transfer_config" "forecasting" {
+resource "google_bigquery_data_transfer_config" "monthly forecasting" {
   display_name           = "Monthly Cost Forecast"
   data_source_id         = "scheduled_query"
   schedule               = "first day of month 00:01"  # Monthly at 00:01 on the 1st day
@@ -6,8 +6,8 @@ resource "google_bigquery_data_transfer_config" "forecasting" {
   service_account_name   = var.transfer_service_account
 
   params = {
-    query                           = file("${path.module}/queries/forecasting.sql")
-    destination_table_name_template = "monthly_forecast"
+    query                           = file("${path.module}/queries/monthly_cost_forecast.sql")
+    destination_table_name_template = "monthly_cost_forecast"
     write_disposition               = "WRITE_TRUNCATE"
   }
 
