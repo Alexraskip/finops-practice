@@ -1,9 +1,28 @@
 variable "project" {
-  default = "finops-practice"
+  description = "The GCP project ID"
+  type        = string
+  default     = "finops-practice"
 }
 
 variable "region" {
-  default = "us-central1"
+  description = "The GCP region for resources"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "transfer_service_account" {
+  description = "Service account email to run BigQuery scheduled queries"
+  type        = string
+}
+
+variable "email_sender" {
+  description = "Email address that sends alert emails"
+  type        = string
+}
+
+variable "email_recipient" {
+  description = "Email address that receives alert emails"
+  type        = string
 }
 
 variable "slack_webhook_url" {
@@ -11,14 +30,3 @@ variable "slack_webhook_url" {
   type        = string
   sensitive   = true
 }
-
-variable "email_sender" {
-  description = "Alert email sender address"
-  type        = string
-}
-
-variable "email_recipient" {
-  description = "Alert email recipient address"
-  type        = string
-}
-

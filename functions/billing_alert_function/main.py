@@ -9,7 +9,11 @@ from datetime import datetime
 PROJECT_ID = os.environ.get("PROJECT_ID")
 DATASET_ID = os.environ.get("DATASET_ID")
 ALERT_TABLES = os.environ.get("ALERT_TABLES", "daily_threshold_alerts,budget_alerts,anomaly_report,rightsizing_report").split(",")
+
 SLACK_WEBHOOK_URL = os.environ.get("SLACK_WEBHOOK_URL")
+if not SLACK_WEBHOOK_URL:
+    SLACK_WEBHOOK_URL = None  # Explicitly set to None if empty or missing
+
 EMAIL_SENDER = os.environ.get("EMAIL_SENDER")
 EMAIL_RECIPIENT = os.environ.get("EMAIL_RECIPIENT")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")

@@ -1,0 +1,8 @@
+# terraform.tfvars.example
+
+project                  = "finops-practice"
+region                   = "us-central1"
+transfer_service_account = "finops-transfer@finops-practice.iam.gserviceaccount.com"
+email_sender             = "alerts@example.com"
+email_recipient          = "finops-team@example.com"
+slack_webhook_url        = "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
