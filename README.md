@@ -140,6 +140,65 @@ cd terraform
 # Upload data
 cd scripts
 .\upload_to_bigquery.ps1
+
+
+# 📊 FinOps Scheduled Queries
+
+This folder contains production-ready SQL queries used in automated BigQuery scheduled transfers (via Terraform).  
+They support cost visibility, forecasting, anomaly detection, and optimization.
+
+---
+
+## ✅ Query list & purpose
+
+| Query file | Destination Table | Purpose |
+|-----------|------------------|--------|
+| `monthly_cost_forecast.sql` | `monthly_cost_forecast` | Forecast overall monthly cost trends (moving average, next month prediction). |
+| `project_monthly_cost_forecast.sql` | `project_monthly_cost_forecast` | Forecast monthly cost per project (moving average + forecast). |
+| `project_service_monthly_cost_forecast.sql` | `project_service_monthly_cost_forecast` | Forecast monthly cost per project and service (more granular). |
+| `project_monthly_costs.sql` | `project_monthly_costs` | Historical monthly cost per project, with customer and business info. |
+| `chargeback_costs.sql` | `chargeback_costs` | Cost breakdown for chargeback: customer, product team, business unit, etc. |
+| `department_env_costs.sql` | `department_env_costs` | Cost summary grouped by department and environment (prod, dev, etc.). |
+| `cost_by_region.sql` | `cost_by_region` | Cost summary by region to highlight location-specific spend. |
+| `resource_type_env_costs.sql` | `resource_type_env_costs` | Cost by resource type and environment to help identify hotspots. |
+| `service_sku_costs.sql` | `service_sku_costs` | Detailed cost per service and SKU description. |
+
+---
+
+## 🛡 Optimization & hygiene
+
+| Query file | Destination Table | Purpose |
+|-----------|------------------|--------|
+| `Idle_Resources.sql` | `idle_resources` | Identify top idle resources (utilization=0) by cost. |
+| `oversized_resources.sql` | `oversized_resources` | Detect oversized resources for potential downsizing. |
+| `rightsizing_recommendations.sql` | `rightsizing_recommendations` | Generate daily rightsizing recommendations. |
+| `spot_savings_estimate.sql` | `spot_savings_estimate` | Estimate savings from moving to spot instances. |
+| `spot_vs_on_demand_costs.sql` | `spot_vs_on_demand_costs` | Compare spot vs on-demand cost trends. |
+
+---
+
+## ⚠ Alerts & completeness
+
+| Query file | Destination Table | Purpose |
+|-----------|------------------|--------|
+| `anomaly_detection.sql` | `anomaly_report` | Identify unusual spikes or drops in cost. |
+| `budgeting_alerts.sql` | `budgeting_alerts` | Daily alerts for budget thresholds. |
+| `cost_threshold_alerts.sql` | `cost_threshold_alerts` | Alert if daily cost exceeds defined thresholds. |
+| `tagging_completeness_by_department.sql` | `tagging_completeness_by_department` | Tagging coverage by department. |
+| `missing_cost_center_label_by_project.sql` | `missing_cost_center_by_project` | Top projects missing `cost_center` label (for governance). |
+
+---
+
+## 🛠 How to use
+- Each SQL query creates or replaces a summary table in the `billing_data` dataset.
+- Queries are automatically scheduled & managed via Terraform.
+- Update a query → commit → re-apply Terraform → scheduled job updates automatically.
+
+```bash
+terraform fmt
+terraform validate
+terraform apply
+
 🚀 Next ideas
 ✅ Automate daily data generation
 ✅ Build Looker Studio dashboards
