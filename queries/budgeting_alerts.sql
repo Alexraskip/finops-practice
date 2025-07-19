@@ -6,7 +6,7 @@ WITH monthly_costs AS (
     invoice_month,
     SUM(cost) AS total_cost
   FROM
-    `finops-practice.billing_data.synthetic_billing_data`
+    `finops-practice.billing_data.exported_billing`
   GROUP BY labels_department, project_id, invoice_month
 )
 SELECT

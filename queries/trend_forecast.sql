@@ -3,7 +3,7 @@ SELECT
   invoice_month,
   SUM(cost) AS monthly_cost
 FROM
-  `finops-practice.billing_data.synthetic_billing_data`
+  `finops-practice.billing_data.exported_billing`
 GROUP BY invoice_month
 ORDER BY invoice_month;
 
@@ -13,7 +13,7 @@ WITH last_months AS (
     invoice_month,
     SUM(cost) AS monthly_cost
   FROM
-    `finops-practice.billing_data.synthetic_billing_data`
+    `finops-practice.billing_data.exported_billing`
   GROUP BY invoice_month
   ORDER BY invoice_month DESC
   LIMIT 2
@@ -29,6 +29,6 @@ SELECT
   EXTRACT(MONTH FROM PARSE_DATE('%Y-%m', invoice_month)) AS month,
   SUM(cost) AS total_cost
 FROM
-  `finops-practice.billing_data.synthetic_billing_data`
+  `finops-practice.billing_data.exported_billing`
 GROUP BY year, month
 ORDER BY year, month;

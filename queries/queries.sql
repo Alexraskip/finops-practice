@@ -4,7 +4,7 @@ SELECT
   invoice_month,
   SUM(cost) AS total_cost
 FROM
-  `finops-practice.billing_data.synthetic_billing_data`
+  `finops-practice.billing_data.exported_billing`
 GROUP BY project_id, invoice_month
 ORDER BY invoice_month DESC, total_cost DESC
 LIMIT 50;
@@ -15,7 +15,7 @@ SELECT
   environment,
   SUM(cost) AS total_cost
 FROM
-  `finops-practice.billing_data.synthetic_billing_data`
+  `finops-practice.billing_data.exported_billing`
 GROUP BY labels_department, environment
 ORDER BY total_cost DESC;
 
@@ -27,7 +27,7 @@ SELECT
   AVG(utilization) AS avg_utilization,
   SUM(cost) AS total_cost
 FROM
-  `finops-practice.billing_data.synthetic_billing_data`
+  `finops-practice.billing_data.exported_billing`
 WHERE utilization < 20
 GROUP BY project_id, service_description, sku_description
 ORDER BY avg_utilization ASC
@@ -39,7 +39,7 @@ SELECT
   invoice_month,
   SUM(cost) AS spike_cost
 FROM
-  `finops-practice.billing_data.synthetic_billing_data`
+  `finops-practice.billing_data.exported_billing`
 WHERE usage_type = 'spike'
 GROUP BY project_id, invoice_month
 ORDER BY spike_cost DESC
@@ -50,7 +50,7 @@ SELECT
   pricing_model,
   SUM(cost) AS total_cost
 FROM
-  `finops-practice.billing_data.synthetic_billing_data`
+  `finops-practice.billing_data.exported_billing`
 GROUP BY pricing_model
 ORDER BY total_cost DESC;
 
@@ -60,7 +60,7 @@ WITH monthly_costs AS (
     invoice_month,
     SUM(cost) AS total_cost
   FROM
-    `finops-practice.billing_data.synthetic_billing_data`
+    `finops-practice.billing_data.exported_billing`
   GROUP BY invoice_month
 )
 SELECT
