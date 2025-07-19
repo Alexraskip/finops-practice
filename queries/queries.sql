@@ -1,31 +1,33 @@
--- 1. Cost visibility by project and month
+-- 1️⃣ Cost visibility by project and month
 SELECT
   project_id,
   invoice_month,
-  SUM(cost) AS total_cost
+  ROUND(SUM(cost)) AS total_cost
 FROM
   `finops-practice.billing_data.exported_billing`
 GROUP BY project_id, invoice_month
 ORDER BY invoice_month DESC, total_cost DESC
 LIMIT 50;
 
--- 2. Cost by department and environment
+
+-- 2️⃣ Cost by department and environment
 SELECT
   labels_department,
   environment,
-  SUM(cost) AS total_cost
+  ROUND(SUM(cost)) AS total_cost
 FROM
   `finops-practice.billing_data.exported_billing`
 GROUP BY labels_department, environment
 ORDER BY total_cost DESC;
 
--- 3. Identify potential idle/underutilized resources (utilization < 20%)
+
+-- 3️⃣ Identify potential idle/underutilized resources (utilization < 20%)
 SELECT
   project_id,
   service_description,
   sku_description,
-  AVG(utilization) AS avg_utilization,
-  SUM(cost) AS total_cost
+  ROUND(AVG(utilization), 2) AS avg_utilization,
+  ROUND(SUM(cost)) AS total_cost
 FROM
   `finops-practice.billing_data.exported_billing`
 WHERE utilization < 20
@@ -33,11 +35,12 @@ GROUP BY project_id, service_description, sku_description
 ORDER BY avg_utilization ASC
 LIMIT 100;
 
--- 4. Detect cost spikes (usage_type = 'spike')
+
+-- 4️⃣ Detect cost spikes (usage_type = 'spike')
 SELECT
   project_id,
   invoice_month,
-  SUM(cost) AS spike_cost
+  ROUND(SUM(cost)) AS spike_cost
 FROM
   `finops-practice.billing_data.exported_billing`
 WHERE usage_type = 'spike'
@@ -45,20 +48,22 @@ GROUP BY project_id, invoice_month
 ORDER BY spike_cost DESC
 LIMIT 50;
 
--- 5. Cost by pricing model
+
+-- 5️⃣ Cost by pricing model
 SELECT
   pricing_model,
-  SUM(cost) AS total_cost
+  ROUND(SUM(cost)) AS total_cost
 FROM
   `finops-practice.billing_data.exported_billing`
 GROUP BY pricing_model
 ORDER BY total_cost DESC;
 
--- 6. Monthly cost forecast (simple linear projection example)
+
+-- 6️⃣ Monthly cost forecast (simple linear projection example)
 WITH monthly_costs AS (
   SELECT
     invoice_month,
-    SUM(cost) AS total_cost
+    ROUND(SUM(cost)) AS total_cost
   FROM
     `finops-practice.billing_data.exported_billing`
   GROUP BY invoice_month

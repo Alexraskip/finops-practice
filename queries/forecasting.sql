@@ -17,9 +17,9 @@ moving_avg AS (
 )
 SELECT
   invoice_month,
-  total_cost,
-  moving_avg_3mo,
-  LEAD(moving_avg_3mo) OVER (ORDER BY invoice_month) AS forecast_next_month
+  ROUND(total_cost, 2) AS total_cost,
+  ROUND(moving_avg_3mo, 2) AS moving_avg_3mo,
+  ROUND(LEAD(moving_avg_3mo) OVER (ORDER BY invoice_month), 2) AS forecast_next_month
 FROM moving_avg
 ORDER BY invoice_month DESC
 LIMIT 12;

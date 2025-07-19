@@ -11,7 +11,7 @@ WITH daily_costs AS (
 SELECT
   project_id,
   day,
-  total_cost,
+  ROUND(total_cost, 2) AS total_cost,
   CASE
     WHEN total_cost > 500 THEN 'ALERT: High Daily Spend'
     ELSE 'OK'

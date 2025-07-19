@@ -15,9 +15,9 @@ SELECT
   invoice_month,
   total_cost,
   -- Assume synthetic budget threshold per project per month
-  5000 AS budget_threshold,
+  17 AS budget_threshold,
   CASE
-    WHEN total_cost > 5000 THEN 'OVER BUDGET'
+    WHEN total_cost > 17 THEN 'OVER BUDGET'
     ELSE 'OK'
   END AS budget_status
 FROM monthly_costs
