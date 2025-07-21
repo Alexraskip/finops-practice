@@ -3,6 +3,7 @@
 # ----------------------------
 
 resource "google_bigquery_data_transfer_config" "monthly_cost_forecast" {
+  # Runs monthly cost forecasting query on first day of each month at 00:01
   display_name           = "Monthly Cost Forecast"
   data_source_id         = "scheduled_query"
   schedule               = "first day of month 00:01"
@@ -20,6 +21,7 @@ resource "google_bigquery_data_transfer_config" "monthly_cost_forecast" {
 }
 
 resource "google_bigquery_data_transfer_config" "project_monthly_cost_forecast" {
+  # Forecast costs per project monthly, scheduled monthly
   display_name           = "Project Monthly Cost Forecast"
   data_source_id         = "scheduled_query"
   schedule               = "first day of month 00:01"
@@ -37,6 +39,7 @@ resource "google_bigquery_data_transfer_config" "project_monthly_cost_forecast" 
 }
 
 resource "google_bigquery_data_transfer_config" "project_service_monthly_forecast" {
+  # Forecast costs per project and service daily
   display_name           = "Project Service Monthly Cost Forecast"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -58,6 +61,7 @@ resource "google_bigquery_data_transfer_config" "project_service_monthly_forecas
 # ----------------------------
 
 resource "google_bigquery_data_transfer_config" "anomaly_detection" {
+  # Detects anomalies in cost data daily
   display_name           = "Anomaly Detection"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -75,6 +79,7 @@ resource "google_bigquery_data_transfer_config" "anomaly_detection" {
 }
 
 resource "google_bigquery_data_transfer_config" "budgeting_alerts" {
+  # Alerts when costs exceed budgets daily
   display_name           = "Budgeting Alerts"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -92,6 +97,7 @@ resource "google_bigquery_data_transfer_config" "budgeting_alerts" {
 }
 
 resource "google_bigquery_data_transfer_config" "cost_threshold_alerts" {
+  # Alerts for cost thresholds exceeded daily
   display_name           = "Cost Threshold Alerts"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -113,6 +119,7 @@ resource "google_bigquery_data_transfer_config" "cost_threshold_alerts" {
 # ----------------------------
 
 resource "google_bigquery_data_transfer_config" "idle_resources" {
+  # Identifies idle resources daily
   display_name           = "Idle Resources"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -130,6 +137,7 @@ resource "google_bigquery_data_transfer_config" "idle_resources" {
 }
 
 resource "google_bigquery_data_transfer_config" "oversized_resources" {
+  # Identifies oversized resources daily
   display_name           = "Oversized Resources"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -147,6 +155,7 @@ resource "google_bigquery_data_transfer_config" "oversized_resources" {
 }
 
 resource "google_bigquery_data_transfer_config" "rightsizing_recommendations" {
+  # Provides rightsizing recommendations daily
   display_name           = "Rightsizing Recommendations"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -168,6 +177,7 @@ resource "google_bigquery_data_transfer_config" "rightsizing_recommendations" {
 # ----------------------------
 
 resource "google_bigquery_data_transfer_config" "spot_savings_estimate" {
+  # Estimates savings using spot pricing daily
   display_name           = "Spot Savings Estimate"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -185,6 +195,7 @@ resource "google_bigquery_data_transfer_config" "spot_savings_estimate" {
 }
 
 resource "google_bigquery_data_transfer_config" "spot_vs_on_demand_costs" {
+  # Compares spot vs on-demand costs daily
   display_name           = "Spot vs On-Demand Costs"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -206,6 +217,7 @@ resource "google_bigquery_data_transfer_config" "spot_vs_on_demand_costs" {
 # ----------------------------
 
 resource "google_bigquery_data_transfer_config" "tagging_completeness_by_department" {
+  # Checks tagging completeness per department daily
   display_name           = "Tagging Completeness by Department"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -223,6 +235,7 @@ resource "google_bigquery_data_transfer_config" "tagging_completeness_by_departm
 }
 
 resource "google_bigquery_data_transfer_config" "missing_cost_center_label_by_project" {
+  # Identifies projects missing cost center labels daily
   display_name           = "Missing Cost Center Label By Project"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -244,6 +257,7 @@ resource "google_bigquery_data_transfer_config" "missing_cost_center_label_by_pr
 # ----------------------------
 
 resource "google_bigquery_data_transfer_config" "chargeback_costs" {
+  # Provides chargeback cost summaries daily
   display_name           = "Chargeback Costs"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -261,6 +275,7 @@ resource "google_bigquery_data_transfer_config" "chargeback_costs" {
 }
 
 resource "google_bigquery_data_transfer_config" "cost_by_region" {
+  # Summarizes costs by region daily
   display_name           = "Cost by Region"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -278,6 +293,7 @@ resource "google_bigquery_data_transfer_config" "cost_by_region" {
 }
 
 resource "google_bigquery_data_transfer_config" "department_env_cost_summary" {
+  # Summarizes costs by department and environment daily
   display_name           = "Department & Environment Cost Summary"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -295,6 +311,7 @@ resource "google_bigquery_data_transfer_config" "department_env_cost_summary" {
 }
 
 resource "google_bigquery_data_transfer_config" "project_monthly_costs" {
+  # Provides monthly cost summaries per project daily
   display_name           = "Project Monthly Costs"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -316,6 +333,7 @@ resource "google_bigquery_data_transfer_config" "project_monthly_costs" {
 # ----------------------------
 
 resource "google_bigquery_data_transfer_config" "resource_type_env_costs" {
+  # Summarizes costs by resource type and environment daily
   display_name           = "Resource Type & Environment Costs"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -333,6 +351,7 @@ resource "google_bigquery_data_transfer_config" "resource_type_env_costs" {
 }
 
 resource "google_bigquery_data_transfer_config" "service_sku_costs" {
+  # Summarizes costs by service and SKU daily
   display_name           = "Service & SKU Costs"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -353,7 +372,8 @@ resource "google_bigquery_data_transfer_config" "service_sku_costs" {
 # Custom cost hygiene queries
 # ----------------------------
 
-resource "google_bigquery_data_transfer_config" "Unattached_Storage_Volumes" {
+resource "google_bigquery_data_transfer_config" "unattached_storage_volumes" {
+  # Identifies unattached storage volumes daily
   display_name           = "Unattached Storage Volumes"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -362,7 +382,7 @@ resource "google_bigquery_data_transfer_config" "Unattached_Storage_Volumes" {
 
   params = {
     query                           = file("${path.module}/queries/unattached_storage_volumes.sql")
-    destination_table_name_template = "Unattached_Unused_Storage_Volumes"
+    destination_table_name_template = "unattached_unused_storage_volumes"
     write_disposition               = "WRITE_TRUNCATE"
   }
 
@@ -371,6 +391,7 @@ resource "google_bigquery_data_transfer_config" "Unattached_Storage_Volumes" {
 }
 
 resource "google_bigquery_data_transfer_config" "underutilized_resources" {
+  # Identifies underutilized resources daily
   display_name           = "Underutilized Resources"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
@@ -379,7 +400,7 @@ resource "google_bigquery_data_transfer_config" "underutilized_resources" {
 
   params = {
     query                           = file("${path.module}/queries/underutilized_resources.sql")
-    destination_table_name_template = "Underutilized Resources"
+    destination_table_name_template = "underutilized_resources"
     write_disposition               = "WRITE_TRUNCATE"
   }
 
