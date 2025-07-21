@@ -370,7 +370,7 @@ resource "google_bigquery_data_transfer_config" "Unattached_Storage_Volumes" {
   location = "US"
 }
 
-resource "google_bigquery_data_transfer_config" "Underutilized Resources" {
+resource "google_bigquery_data_transfer_config" "underutilized_resources" {
   display_name           = "Underutilized Resources"
   data_source_id         = "scheduled_query"
   schedule               = "every 24 hours"
