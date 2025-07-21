@@ -120,7 +120,7 @@ resource "google_bigquery_data_transfer_config" "idle_resources" {
   service_account_name   = var.transfer_service_account
 
   params = {
-    query  = file("${path.module}/queries/Idle_Resources.sql")
+    query  = file("${path.module}/queries/idle_resources.sql")
     destination_table_name_template = "idle_resources"
     write_disposition = "WRITE_TRUNCATE"
   }
@@ -343,6 +343,44 @@ resource "google_bigquery_data_transfer_config" "service_sku_costs" {
     query  = file("${path.module}/queries/service_sku_costs.sql")
     destination_table_name_template = "service_sku_costs"
     write_disposition = "WRITE_TRUNCATE"
+  }
+
+  project  = var.project
+  location = "US"
+}
+
+# ----------------------------
+# Custom cost hygiene queries
+# ----------------------------
+
+resource "google_bigquery_data_transfer_config" "Unattached_Storage_Volumes" {
+  display_name           = "Unattached Storage Volumes"
+  data_source_id         = "scheduled_query"
+  schedule               = "every 24 hours"
+  destination_dataset_id = google_bigquery_dataset.billing_data.dataset_id
+  service_account_name   = var.transfer_service_account
+
+  params = {
+    query                           = file("${path.module}/queries/unattached_storage_volumes.sql")
+    destination_table_name_template = "Unattached_Unused_Storage_Volumes"
+    write_disposition               = "WRITE_TRUNCATE"
+  }
+
+  project  = var.project
+  location = "US"
+}
+
+resource "google_bigquery_data_transfer_config" "Underutilized Resources" {
+  display_name           = "Underutilized Resources"
+  data_source_id         = "scheduled_query"
+  schedule               = "every 24 hours"
+  destination_dataset_id = google_bigquery_dataset.billing_data.dataset_id
+  service_account_name   = var.transfer_service_account
+
+  params = {
+    query                           = file("${path.module}/queries/underutilized_resources.sql")
+    destination_table_name_template = "Underutilized Resources"
+    write_disposition               = "WRITE_TRUNCATE"
   }
 
   project  = var.project

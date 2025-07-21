@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.cost_by_region` AS
 SELECT
   b.billing_account_id,
   r.customer_name,
@@ -9,7 +8,7 @@ SELECT
 FROM
   `finops-practice.billing_data.exported_billing` b
 LEFT JOIN
-  `finops-practice.billing.data.billing_account_reference` r
+  `finops-practice.billing_data.billing_account_reference` r
 ON b.billing_account_id = r.billing_account_id
 GROUP BY
   b.billing_account_id,

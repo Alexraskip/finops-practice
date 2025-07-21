@@ -40,7 +40,7 @@ SELECT
 FROM
   budget_check bc
 LEFT JOIN
-  `finops-practice.billing.data.billing_account_reference` bcr
+  `finops-practice.billing_data.billing_account_reference` bcr
 ON
   bc.billing_account_id = bcr.billing_account_id
 ORDER BY

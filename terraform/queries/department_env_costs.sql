@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.department_environment_cost_summary` AS
 SELECT
   b.labels_department,
   b.environment,

@@ -1,4 +1,3 @@
-CREATE OR REPLACE TABLE `finops-practice.billing_data.idle_resources` AS
 SELECT
   b.billing_account_id,
   r.customer_name,
