@@ -200,11 +200,31 @@ terraform fmt
 terraform validate
 terraform apply
 
+### To indentify unattached persistent disks across large scale environment
+Option 1: Cloud Asset Inventory → BigQuery (recommended & easiest for BigQuery users):
+Enable Cloud Asset Inventory export to BigQuery
+It exports the full list of resources (incl. disks) into a BigQuery table, daily/hourly.
+Then, use scheduled queries (BigQuery Scheduler) to join:
+asset inventory → check which disks have empty users list (unattached)
+billing export → get cost
+Step 1: Enable Cloud Asset Inventory export to BigQuery
+Step 2: Confirm your billing export exists in BigQuery
+Step 3: Write a scheduled BigQuery query to find unattached disks and join costs
+Step 4: Schedule this query to run daily
+Step 5: Build dashboards or alerts
+
+
 🚀 Next ideas
 ✅ Automate daily data generation
 ✅ Build Looker Studio dashboards
 ✅ Add cost anomaly detection scripts
 ✅ Practice with IAM, budgets, and alerts
+✅Identify and clean up unattached disks & unused IPs
+✅Rightsizing recommendations based on utilization
+✅Network tier optimization
+✅Storage class analysis & auto-tiering recommendations
+✅Budget alerts & quota-based controls
+✅Cloud Monitoring dashboards & lightweight Cloud Run reporting app
 
 ✨ Author
 FinOps Lab — Practice project by [Josphat Too Langat]
